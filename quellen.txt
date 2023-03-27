@@ -1,0 +1,2 @@
+1. Offizielle Python Dokumentation: https://docs.python.org/
+2. Theis Einstieg in Python
