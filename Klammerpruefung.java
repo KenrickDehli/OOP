@@ -14,6 +14,7 @@ import java.io.IOException;
  */
 public class Klammerpruefung {
 
+
 	public static void main(String [] args){
 
 		for(String filename : args) {
@@ -26,13 +27,13 @@ public class Klammerpruefung {
 			}
 			bufferedReader.close();
 			if (correctBracking(filetext.toString())){
-					System.out.println("Der Quelltext in der Datei" + filename + " ist korrekt geklammert");
+					System.out.println("Der Quelltext in der Datei " + filename + " ist korrekt geklammert");
 				}
 			else {
 					System.out.println("Der Quelltext in der Datei " + filename + " ist nicht korrekt geklammert");
 				}
 			} catch (FileNotFoundException ex	) {
-					System.out.println(filename + "not found");
+					System.out.println("Die Datei " + filename + " konnte nicht gefunden werden.");
 			} catch (IOException ex) {
 				System.out.println(ex);
 			}
@@ -62,7 +63,21 @@ public class Klammerpruefung {
 	private static boolean correctBracking(String input){
 		Stack<Character> stack = new Stack<Character>();
 		char topChar;
+		int quotesCount = 0;
+		boolean quotes = false;
 		for (char currentChar : input.toCharArray()) {
+			if (currentChar == '\'' || currentChar == '\"' || quotesCount < 2){
+				if (quotesCount == 2){
+					quotes = true; 
+					quotesCount = 0;
+				}
+				else {
+					quotesCount++;
+					quotes = true;
+				}
+			continue;
+			}
+			if (!quotes){
 			switch (currentChar) {
 				case '(', '[', '{' -> stack.push(currentChar);
 				case ')' -> {
@@ -102,10 +117,11 @@ public class Klammerpruefung {
 				default -> {
 				}
 			}
+			}
 		}
 		return stack.isEmpty();
 	}
-
+	
 	private enum Bracket {
 		ROUND, SQUARE, CURLY
 	}
