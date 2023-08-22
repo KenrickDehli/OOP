@@ -1,0 +1,6 @@
+Vektoren
+- geben an auf welche Art und Wiese ein Punkt per Parallelverschiebung im Vektorraum verschoben wird. 
+- sie sind durch ihre Länge und durch ihre Richtung definiert -> Abstand und Richtung der Verschiebung
+
+
+Linearkombination
