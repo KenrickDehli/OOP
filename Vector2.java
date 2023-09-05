@@ -15,7 +15,6 @@ public class Vector2 {
         return new Vector2((1-t)*x + t*other.x, (1-t)*y + t*other.y);
         }
 
-
         @Override
         public String toString() {
             return "x: " + (int)this.x + " y: " + (int)this.y;

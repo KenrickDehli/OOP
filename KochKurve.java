@@ -14,7 +14,11 @@ public class KochKurve extends JFrame {
                 int[] yPoints = {50,350,350};
                 Polygon poly = new Polygon(xPoints, yPoints, xPoints.length);
                 Polygon poly2 = subdivide(poly);
-                g.drawPolygon(poly2);
+                //Polygon poly3 = subdivide(poly2);
+                //Polygon poly4 = subdivide(poly3);
+                //Polygon poly5 = subdivide(poly4);
+                g.drawPolygon(poly);
+                System.out.println("npoints " + poly2.npoints);
             }
         };
         add(panel);
@@ -33,11 +37,15 @@ public class KochKurve extends JFrame {
         Polygon ret = new Polygon();
         int points = polygon.npoints;
         for (int i = 0; i < points; i++ ){ 
-            System.out.println(i);
+            System.out.println("points " + points);
+            System.out.println("i " + i);
+            System.out.println("i+1 "+ (i +1));
+            System.out.println("i + 1 % points "+(i+1) % points);
+
         Vector2 vectorA = new Vector2(polygon.xpoints[i], polygon.ypoints[i]);
         Vector2 vectorE = new Vector2(polygon.xpoints[(i + 1) % points ], polygon.ypoints[(i + 1) % points]);
-        Vector2 helpVector = new Vector2(vectorE.x - vectorA.x, vectorE.y - vectorA.y);
-        double length = helpVector.length();
+        Vector2 connectionVector = new Vector2(vectorE.x - vectorA.x, vectorE.y - vectorA.y);
+        double length = connectionVector.length();
         System.out.println("this is the length hallo "+length);
 
 
@@ -54,7 +62,7 @@ public class KochKurve extends JFrame {
         System.out.println(middlePointY);
         Vector2 middlePoint = new Vector2(middlePointX, middlePointY);
 
-        Vector2 verticalVector = new Vector2(helpVector.y, helpVector.x * - 1.0);
+        Vector2 verticalVector = new Vector2(connectionVector.y, connectionVector.x * - 1.0);
         Vector2 normalizedVerticalVector = verticalVector.normalized();
 
         double lengthb = (1.0/3.0) * length;
@@ -64,9 +72,14 @@ public class KochKurve extends JFrame {
         System.out.println("this is the length e"+lengthe);
         // d2 = b2-e2
         double lengthd = Math.sqrt((lengthb * lengthb) - (lengthe *lengthe));
-        System.out.println("this is the length d"+lengthd);
+        System.out.println("this is the length d "+lengthd);
         System.out.println("this is the length d small "+ lengthd/length);
-        Vector2 vectorC = middlePoint.linearInterpolation(normalizedVerticalVector, -0.5);
+        double verticalX = middlePointX + verticalVector.x;
+        double verticalY = middlePointY + verticalVector.y;
+
+        Vector2 vec = new Vector2(verticalX, verticalY);
+        Vector2 vectorC = middlePoint.linearInterpolation(vec, lengthd/length);
+
 
 
         /* Polygon ret = new Polygon();
@@ -78,23 +91,21 @@ public class KochKurve extends JFrame {
         ret.addPoint((int)vectorB.x, (int)vectorB.y);
         ret.addPoint((int)vectorC.x, (int)vectorC.y);
         ret.addPoint((int)vectorD.x, (int)vectorD.y);
-        ret.addPoint((int)vectorE.x, (int)vectorE.y);
 
 
 
-        System.out.println("Vector A"+vectorA);
-        System.out.println("Vector B"+vectorB);
-        System.out.println("Vector D"+vectorD);
-        System.out.println("Vector E"+vectorE);
-        System.out.println("Vector C"+vectorC);
-        System.out.println("Help Vector"+helpVector);
-        System.out.println("VerticalVec"+verticalVector);
-        System.out.println(" NormVec"+normalizedVerticalVector);
+        System.out.println("Vector A "+vectorA);
+        System.out.println("Vector B "+vectorB);
+        System.out.println("Vector D "+vectorD);
+        System.out.println("Vector E "+vectorE);
+        System.out.println("Vector C "+vectorC);
+        System.out.println("Connection Vector "+connectionVector);
+        System.out.println("VerticalVec "+verticalVector);
+        System.out.println(" NormVec "+normalizedVerticalVector);
 
         }
 
      
      return ret;
     }
-
 }
