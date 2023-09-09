@@ -4,14 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException; 
 import java.io.IOException; 
 
-/* 1. Dateien einlesen
- * 2. Über den String iterieren
- * 3. Momentanes Zeichen == öffnende Klammer? → Auf Stack legen
- * 4. Momentanes Zeichen == schließende Klammer? → Liegt auf Stack die zugehörige offene?
- * 5. Wenns passt dann das Element vom Stack nehmen
- * 6. Andernfalls abbrechen
- * 7. Quelltext ist korrekt geklammert wenn Stack am Ende leer ist. 
- */
 public class Klammerpruefung {
 
 

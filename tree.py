@@ -56,6 +56,10 @@ def calculateBase(indentation_level):
     return result
 
 
-directories, files = print_directory(".")
-print()
-print(directories, "directories, ", files, "files")
+def __main__():
+    directories, files = print_directory(".")
+    print()
+    print(f"{directories} directories, {files} files")
+
+
+__main__()
