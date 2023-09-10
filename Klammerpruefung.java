@@ -26,7 +26,7 @@ public class Klammerpruefung {
 				}
 			} catch (FileNotFoundException ex	) {
 					System.out.println("Die Datei " + filename + " konnte nicht gefunden werden.");
-			} catch (IOException ex) {
+			} catch (Exception ex) {
 				System.out.println(ex);
 			}
 		}

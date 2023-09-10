@@ -116,13 +116,13 @@ def __main__():
             print("Der Wahrscheinlickeitsvektor für Ihren Text: \n", frequencies_text)
             # Ergebnis für d)
             print()
-            print("Der zu entschlüssenlde Text:", encoded_text)
+            print("Der zu entschlüsselnde Text:", encoded_text)
             decoded_text = crack_caesar(example_text, encoded_text)
             print("Der entschlüsselte Text:", decoded_text)
         except Exception as ex:
             print("Something went wrong:", ex)
     else:
-        print('''Script stopped because the input parameters were greater than or less than 2''')
+        print('''Script stopped because the input parameters were greater than or less than 2!''')
 
 
 __main__()
